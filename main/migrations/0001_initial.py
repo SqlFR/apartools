@@ -19,8 +19,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(error_messages={'unique': 'Un appartement portant ce nom éxiste déjà.'}, max_length=32, unique=True, verbose_name='Nom')),
                 ('slug', models.SlugField(max_length=128)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('bedroom', models.PositiveSmallIntegerField(default=1, validators=[main.models.CustomMinValueValidator(1, 'Au moins 1 chambre ! On dort où sinon ?'), main.models.CustomMaxValueValidator(12)], verbose_name='Chambre')),
-                ('bathroom', models.PositiveSmallIntegerField(default=1, validators=[main.models.CustomMaxValueValidator(6)], verbose_name='Salle de bain')),
+                ('bedroom', models.PositiveSmallIntegerField(default=1, validators=[main.models.MinValueValidator(1, 'Au moins 1 chambre ! On dort où sinon ?'), main.models.MaxValueValidator(12)], verbose_name='Chambre')),
+                ('bathroom', models.PositiveSmallIntegerField(default=1, validators=[main.models.MaxValueValidator(6)], verbose_name='Salle de bain')),
                 ('kitchen', models.PositiveSmallIntegerField(default=1, verbose_name='Cuisine')),
             ],
             options={

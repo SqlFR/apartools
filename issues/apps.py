@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class MainConfig(AppConfig):
+class IssuesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'main'
-    verbose_name = 'Application principale'
+    name = 'issues'
+    verbose_name = 'Les incidents'

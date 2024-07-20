@@ -1,3 +1,5 @@
+from enum import Enum, auto
+
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.text import slugify
@@ -5,14 +7,32 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-class CustomMinValueValidator(MinValueValidator):
-    def __init__(self, limit_value, message=None):
-        super().__init__(limit_value, message=message or f'La valeur doit être au moins de {limit_value}.')
+# class CustomMinValueValidator(MinValueValidator):
+#     def __init__(self, limit_value, message=None):
+#         super().__init__(limit_value, message=message or f'La valeur doit être au moins de {limit_value}.')
+#
+#
+# class CustomMaxValueValidator(MaxValueValidator):
+#     def __init__(self, limit_value, message=None):
+#         super().__init__(limit_value, message=message or f'La valeur ne peut pas dépasser {limit_value}.')
 
 
-class CustomMaxValueValidator(MaxValueValidator):
-    def __init__(self, limit_value, message=None):
-        super().__init__(limit_value, message=message or f'La valeur ne peut pas dépasser {limit_value}.')
+class Room(models.Model):
+
+    ROOM_TYPES = [
+        ('BE', 'Chambre'),
+        ('BA', 'Salle de bain'),
+        ('KI', 'Cuisine'),
+        ('LI', 'Salon'),
+        ('LA', 'Buanderie'),
+        ('EN', 'Entrée')
+    ]
+
+    name = models.CharField(max_length=128)
+    room_type = models.CharField(max_length=2, choices=ROOM_TYPES)
+
+    def __str__(self):
+        return self.name
 
 
 class Apartment(models.Model):
@@ -21,20 +41,14 @@ class Apartment(models.Model):
     }, verbose_name='Nom')
     slug = models.SlugField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
-    bedroom = models.PositiveSmallIntegerField(default=1,
-                                               validators=[
-                                                    CustomMinValueValidator(1,
-                                                                            f'Au moins 1 chambre ! On dort où sinon ?'),
-
-                                                    CustomMaxValueValidator(12)
-                                                           ],
-                                               verbose_name='Chambre')
-    bathroom = models.PositiveSmallIntegerField(default=1,
-                                                validators=[
-                                                   CustomMaxValueValidator(6)
-                                                ],
-                                                verbose_name='Salle de bain')
-    kitchen = models.PositiveSmallIntegerField(default=1, verbose_name='Cuisine')
+    number_of_bedrooms = models.PositiveSmallIntegerField(default=1,
+                                                          validators=[MinValueValidator(1), MaxValueValidator(10)],
+                                                          verbose_name='Nombre de chambre')
+    number_of_bathrooms = models.PositiveSmallIntegerField(default=1,
+                                                           validators=[MinValueValidator(0), MaxValueValidator(2)],
+                                                           verbose_name='Nombre de SDB')
+    bedrooms = models.ManyToManyField(Room, related_name='+', blank=True)
+    bathrooms = models.ManyToManyField(Room, related_name='+', blank=True)
 
     class Meta:
         verbose_name = 'Appartement'
@@ -50,7 +64,22 @@ class Apartment(models.Model):
 
 
 @receiver(post_save, sender=Apartment)
-def add_slug_to_apart_when_created(created, instance, **kwargs):
+def add_rooms_for_apartment(sender, instance, created, **kwargs):
+    print(instance.bedrooms)
+    if created:
+        # Créer les chambres
+        for i in range(instance.number_of_bedrooms):
+            bedroom = Room.objects.create(name=f"Chambre {i+1}", room_type='BE')
+            instance.bedrooms.add(bedroom)
+
+        # Créer les salles de bain
+        for i in range(instance.number_of_bathrooms):
+            bathroom = Room.objects.create(name=f"Chambre {i + 1}", room_type='BE')
+            instance.bathrooms.add(bathroom)
+
+
+@receiver(post_save, sender=Apartment)
+def add_slug_to_apart(sender, created, instance, **kwargs):
     if created:
         instance.slug = slugify(instance.name)
         instance.save()
