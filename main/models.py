@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.text import slugify
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class CustomMinValueValidator(MinValueValidator):
@@ -44,3 +47,10 @@ class Apartment(models.Model):
 
     def __str__(self):
         return self.name
+
+
+@receiver(post_save, sender=Apartment)
+def add_slug_to_apart_when_created(created, instance, **kwargs):
+    if created:
+        instance.slug = slugify(instance.name)
+        instance.save()
