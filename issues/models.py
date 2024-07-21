@@ -3,7 +3,7 @@ from django.db import models
 from main.models import Apartment, Room
 
 
-class TypeIssue(models.Model):
+class IssueType(models.Model):
     name = models.CharField(max_length=128, unique=True, verbose_name='Nom')
 
     class Meta:
@@ -15,7 +15,7 @@ class TypeIssue(models.Model):
 
     def save(self, *args, **kwargs):
         self.name = self.name.capitalize()
-        super(TypeIssue, self).save(*args, **kwargs)
+        super(IssueType, self).save(*args, **kwargs)
 
 
 class Issue(models.Model):

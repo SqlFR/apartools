@@ -7,18 +7,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-# class CustomMinValueValidator(MinValueValidator):
-#     def __init__(self, limit_value, message=None):
-#         super().__init__(limit_value, message=message or f'La valeur doit être au moins de {limit_value}.')
-#
-#
-# class CustomMaxValueValidator(MaxValueValidator):
-#     def __init__(self, limit_value, message=None):
-#         super().__init__(limit_value, message=message or f'La valeur ne peut pas dépasser {limit_value}.')
-
-
-
-
 class Apartment(models.Model):
 
     name = models.CharField(max_length=32, unique=True, error_messages={
@@ -62,7 +50,6 @@ class Room(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 @receiver(post_save, sender=Apartment)
