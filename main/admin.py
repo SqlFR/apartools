@@ -6,7 +6,7 @@ from accounts.models import CustomUser
 
 
 class ApartmentAdmin(admin.ModelAdmin):
-    exclude = ('slug', 'kitchen', 'bathrooms', 'bedrooms')
+    exclude = ('slug', 'kitchen', 'rooms')
 
 
 admin.site.register(Apartment, ApartmentAdmin)

@@ -17,25 +17,10 @@ from django.dispatch import receiver
 #         super().__init__(limit_value, message=message or f'La valeur ne peut pas dépasser {limit_value}.')
 
 
-class Room(models.Model):
-
-    ROOM_TYPES = [
-        ('BE', 'Chambre'),
-        ('BA', 'Salle de bain'),
-        ('KI', 'Cuisine'),
-        ('LI', 'Salon'),
-        ('LA', 'Buanderie'),
-        ('EN', 'Entrée')
-    ]
-
-    name = models.CharField(max_length=128)
-    room_type = models.CharField(max_length=2, choices=ROOM_TYPES)
-
-    def __str__(self):
-        return self.name
 
 
 class Apartment(models.Model):
+
     name = models.CharField(max_length=32, unique=True, error_messages={
         'unique': 'Un appartement portant ce nom éxiste déjà.'
     }, verbose_name='Nom')
@@ -47,8 +32,6 @@ class Apartment(models.Model):
     number_of_bathrooms = models.PositiveSmallIntegerField(default=1,
                                                            validators=[MinValueValidator(0), MaxValueValidator(2)],
                                                            verbose_name='Nombre de SDB')
-    bedrooms = models.ManyToManyField(Room, related_name='+', blank=True)
-    bathrooms = models.ManyToManyField(Room, related_name='+', blank=True)
 
     class Meta:
         verbose_name = 'Appartement'
@@ -63,19 +46,41 @@ class Apartment(models.Model):
         return self.name
 
 
+class Room(models.Model):
+    ROOM_TYPES = [
+        ('BE', 'Chambre'),
+        ('BA', 'Salle de bain'),
+        ('KI', 'Cuisine'),
+        ('LI', 'Salon'),
+        ('LA', 'Buanderie'),
+        ('EN', 'Entrée')
+    ]
+
+    name = models.CharField(max_length=128)
+    apartment = models.ForeignKey(Apartment, on_delete=models.CASCADE)
+    room_type = models.CharField(max_length=2, choices=ROOM_TYPES)
+
+    def __str__(self):
+        return self.name
+
+
+
 @receiver(post_save, sender=Apartment)
 def add_rooms_for_apartment(sender, instance, created, **kwargs):
-    print(instance.bedrooms)
+
     if created:
         # Créer les chambres
         for i in range(instance.number_of_bedrooms):
-            bedroom = Room.objects.create(name=f"Chambre {i+1}", room_type='BE')
-            instance.bedrooms.add(bedroom)
+            Room.objects.create(name=f"Chambre {i+1}", apartment=instance, room_type='BE')
 
         # Créer les salles de bain
         for i in range(instance.number_of_bathrooms):
-            bathroom = Room.objects.create(name=f"Chambre {i + 1}", room_type='BE')
-            instance.bathrooms.add(bathroom)
+            Room.objects.create(name=f"Salle de bain {i + 1}", apartment=instance, room_type='BE')
+
+        Room.objects.create(name='Entrée', apartment=instance, room_type='EN')
+        Room.objects.create(name='Buanderie', apartment=instance, room_type='LA')
+        Room.objects.create(name='Salon', apartment=instance, room_type='LI')
+        Room.objects.create(name='Cuisine', apartment=instance, room_type='KI')
 
 
 @receiver(post_save, sender=Apartment)

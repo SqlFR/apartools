@@ -1,6 +1,6 @@
 from django.db import models
 
-from main.models import Apartment
+from main.models import Apartment, Room
 
 
 class TypeIssue(models.Model):
@@ -22,20 +22,9 @@ class Issue(models.Model):
 
     class Meta:
         verbose_name = 'Incident'
-        verbose_name_plural = 'Incidents'
+        verbose_name_plural = 'Incident'
 
-    apartment = models.ForeignKey(Apartment, on_delete=models.CASCADE)
-    # room = models.Ch(choice=create_list_rooms(), verbose_name='pièce')
+    apartment = models.ForeignKey(Apartment, on_delete=models.CASCADE, related_name='apartments')
+    room = models.ManyToManyField(Room, related_name='apartments')
     issue = models.TextField(verbose_name='Type d\'incident')
     details = models.TextField(verbose_name='Informations complémentaires')
-
-
-
-# Crée la liste rooms contenant des tuples de pièce
-# def create_list_rooms(apartment: Apartment) -> list[tuple[str, str]]:
-#     rooms = [('Entrée', 'Entrée'), ('Cuisine', 'Cuisine'), ('Salon', 'Salon')]
-#     rooms += [(f'Chambre {i}', f'Chambre {i}') for i in range(1, apartment.bedroom + 1)]
-#     rooms += [(f'Salle de bain {i}', f'Salle de bain {i}') for i in range(1, apartment.bathroom + 1)]
-#     rooms += [('Buanderie', 'Buanderie')]
-
-    # return rooms
