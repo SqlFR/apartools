@@ -1,11 +1,5 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    {% for apartment in apartments %}
-        <p>{{ apartment.name }}</p>
-    {% endfor %}
-{% endblock %}
-
 {% block login_user %}
  <h1>Se connecter</h1>
     <form method="POST">

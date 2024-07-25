@@ -6,6 +6,12 @@
 </head>
 <body>
     <h1>Apartools</h1>
-    {% block content %}{% endblock %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Déconnexion</a>
+        {% block content %}{% endblock %}
+    {% else %}
+        {% block login_user %}{% endblock %}
+    {% endif %}
+
 </body>
 </html>

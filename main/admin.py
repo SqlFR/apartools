@@ -3,7 +3,7 @@ from django.contrib import admin
 from accessories.models import AccessoryType
 from issues.models import IssueType
 from main.models import Apartment
-from accounts.models import CustomUser
+from accounts.models import User
 
 
 class ApartmentAdmin(admin.ModelAdmin):
@@ -11,6 +11,6 @@ class ApartmentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Apartment, ApartmentAdmin)
-admin.site.register(CustomUser)
+admin.site.register(User)
 admin.site.register(IssueType)
 admin.site.register(AccessoryType)

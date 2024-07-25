@@ -14,10 +14,10 @@ class Apartment(models.Model):
     }, verbose_name='Nom')
     slug = models.SlugField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
-    number_of_bedrooms = models.PositiveSmallIntegerField(default=1,
+    bedroom = models.PositiveSmallIntegerField(default=1,
                                                           validators=[MinValueValidator(1), MaxValueValidator(10)],
                                                           verbose_name='Nombre de chambre')
-    number_of_bathrooms = models.PositiveSmallIntegerField(default=1,
+    bathroom = models.PositiveSmallIntegerField(default=1,
                                                            validators=[MinValueValidator(0), MaxValueValidator(2)],
                                                            verbose_name='Nombre de SDB')
 
@@ -57,11 +57,11 @@ def add_rooms_for_apartment(sender, instance, created, **kwargs):
 
     if created:
         # Créer les chambres
-        for i in range(instance.number_of_bedrooms):
+        for i in range(instance.bedroom):
             Room.objects.create(name=f"Chambre {i+1}", apartment=instance, room_type='BE')
 
         # Créer les salles de bain
-        for i in range(instance.number_of_bathrooms):
+        for i in range(instance.bathroom):
             Room.objects.create(name=f"Salle de bain {i + 1}", apartment=instance, room_type='BE')
 
         Room.objects.create(name='Entrée', apartment=instance, room_type='EN')
