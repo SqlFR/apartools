@@ -1,5 +1,6 @@
 from urllib.parse import urlencode
 
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 
@@ -14,6 +15,7 @@ class LoginRequiredMiddleware:
                 not request.path.startswith(reverse('login')) and
                 not request.path.startswith('/admin/')):
             # Redirige vers l'URL initialement renseignée
+            print(request.path)
             return redirect(f"{reverse('login')}?{urlencode({'next': request.path})}")
 
         response = self.get_response(request)

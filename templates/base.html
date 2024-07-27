@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Apartools</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apartools</title>
+    <link rel="stylesheet" href="{% static 'apartools/style/style_output.css' %}">
 </head>
 <body>
-    <h1>Apartools</h1>
+    <h1 class="text-red-600">Apartools</h1>
     {% if user.is_authenticated %}
         <a href="{% url 'logout' %}">Déconnexion</a>
         {% block content %}{% endblock %}
     {% else %}
         {% block login_user %}{% endblock %}
     {% endif %}
-
 </body>
 </html>

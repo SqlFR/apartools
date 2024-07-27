@@ -4,6 +4,7 @@
  <h1>Se connecter</h1>
     <form method="POST">
         {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
         <p>
             <label for="username">Nom d'utilisateur</label>
             <input id="username" type="text" name="username">
