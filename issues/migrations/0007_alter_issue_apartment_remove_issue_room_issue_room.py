@@ -8,14 +8,14 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('issues', '0006_alter_issue_apartment_alter_issue_room'),
-        ('main', '0021_alter_room_apartment'),
+        ('project', '0021_alter_room_apartment'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='issue',
             name='apartment',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='apartments', to='main.apartment'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='apartments', to='project.apartment'),
         ),
         migrations.RemoveField(
             model_name='issue',
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='issue',
             name='room',
-            field=models.OneToOneField(default='', on_delete=django.db.models.deletion.CASCADE, related_name='apartments', to='main.room'),
+            field=models.OneToOneField(default='', on_delete=django.db.models.deletion.CASCADE, related_name='apartments', to='project.room'),
             preserve_default=False,
         ),
     ]

@@ -8,24 +8,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0002_room_alter_apartment_bathroom_and_more'),
+        ('project', '0002_room_alter_apartment_bathroom_and_more'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='apartment',
             name='laundry_room',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='laundry_room', to='main.room', verbose_name='Buanderie'),
+            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, related_name='laundry_room', to='project.room', verbose_name='Buanderie'),
             preserve_default=False,
         ),
         migrations.AlterField(
             model_name='apartment',
             name='bathroom',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bathroom', to='main.room', validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(2)], verbose_name='Salle de bain'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bathroom', to='project.room', validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(2)], verbose_name='Salle de bain'),
         ),
         migrations.AlterField(
             model_name='apartment',
             name='bedroom',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bedroom', to='main.room', validators=[django.core.validators.MinValueValidator(1, 'Au moins 1 chambre ! On dort où sinon ?'), django.core.validators.MaxValueValidator(10)], verbose_name='Chambre'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bedroom', to='project.room', validators=[django.core.validators.MinValueValidator(1, 'Au moins 1 chambre ! On dort où sinon ?'), django.core.validators.MaxValueValidator(10)], verbose_name='Chambre'),
         ),
     ]

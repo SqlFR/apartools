@@ -1,6 +1,6 @@
 from django.db import models
 
-from main.models import Apartment, Room
+from project.models import Apartment, Room
 
 
 class IssueType(models.Model):
@@ -19,12 +19,11 @@ class IssueType(models.Model):
 
 
 class Issue(models.Model):
-
     class Meta:
         verbose_name = 'Incident'
         verbose_name_plural = 'Incident'
 
     apartment = models.ForeignKey(Apartment, on_delete=models.CASCADE, related_name='apartments')
-    room = models.ManyToManyField(Room, related_name='apartments')
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
     issue = models.TextField(verbose_name='Type d\'incident')
     details = models.TextField(verbose_name='Informations complémentaires')

@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0001_initial'),
+        ('project', '0001_initial'),
     ]
 
     operations = [
@@ -23,16 +23,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='apartment',
             name='bathroom',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bathroom', to='main.room', validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(6)], verbose_name='Salle de bain'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bathroom', to='project.room', validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(6)], verbose_name='Salle de bain'),
         ),
         migrations.AlterField(
             model_name='apartment',
             name='bedroom',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bedroom', to='main.room', validators=[django.core.validators.MinValueValidator(1, 'Au moins 1 chambre ! On dort où sinon ?'), django.core.validators.MaxValueValidator(12)], verbose_name='Chambre'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bedroom', to='project.room', validators=[django.core.validators.MinValueValidator(1, 'Au moins 1 chambre ! On dort où sinon ?'), django.core.validators.MaxValueValidator(12)], verbose_name='Chambre'),
         ),
         migrations.AlterField(
             model_name='apartment',
             name='kitchen',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='kitchen', to='main.room', verbose_name='Cuisine'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='kitchen', to='project.room', verbose_name='Cuisine'),
         ),
     ]

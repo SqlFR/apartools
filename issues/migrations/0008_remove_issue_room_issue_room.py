@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('issues', '0007_alter_issue_apartment_remove_issue_room_issue_room'),
-        ('main', '0022_alter_room_apartment'),
+        ('project', '0022_alter_room_apartment'),
     ]
 
     operations = [
@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='issue',
             name='room',
-            field=models.ManyToManyField(related_name='apartments', to='main.room'),
+            field=models.ManyToManyField(related_name='apartments', to='project.room'),
         ),
     ]

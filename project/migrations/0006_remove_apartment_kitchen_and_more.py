@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0005_remove_apartment_bathroom_remove_apartment_bedroom_and_more'),
+        ('project', '0005_remove_apartment_bathroom_remove_apartment_bedroom_and_more'),
     ]
 
     operations = [

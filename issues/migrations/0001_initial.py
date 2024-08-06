@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('main', '0001_initial'),
+        ('project', '0001_initial'),
     ]
 
     operations = [
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('room', models.CharField(max_length=24, verbose_name='pièce')),
                 ('issue', models.TextField(verbose_name="Type d'incident")),
                 ('details', models.TextField(verbose_name='Informations complémentaires')),
-                ('apartment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.apartment')),
+                ('apartment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='project.apartment')),
             ],
         ),
     ]

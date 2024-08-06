@@ -54,7 +54,6 @@ class Room(models.Model):
 
 @receiver(post_save, sender=Apartment)
 def add_rooms_for_apartment(sender, instance, created, **kwargs):
-
     if created:
         # Créer les chambres
         for i in range(instance.bedroom):

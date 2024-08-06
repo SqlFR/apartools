@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from accessories.models import AccessoryType
 from issues.models import IssueType
-from main.models import Apartment
+from project.models import Apartment
 from accounts.models import User
 
 

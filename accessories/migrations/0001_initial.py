@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('main', '0028_remove_apartment_kitchen_room_apartment'),
+        ('project', '0028_remove_apartment_kitchen_room_apartment'),
     ]
 
     operations = [
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('status', models.CharField(choices=[('NOT_HANDLED', 'Non traité'), ('NOT_AVAILABLE', 'Indisponible'), ('HANDLED', 'Préparé'), ('DELIVERY', 'Livré')], default='NOT_HANDLED', max_length=24)),
-                ('apartment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.apartment')),
+                ('apartment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='project.apartment')),
                 ('sheet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accessories.accessorytype')),
             ],
             options={

@@ -1,6 +1,6 @@
 from django.db import models
 
-from main.models import Apartment
+from project.models import Apartment
 
 
 # Create your models here.

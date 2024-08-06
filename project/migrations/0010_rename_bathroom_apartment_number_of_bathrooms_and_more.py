@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0009_remove_apartment_laundry_room'),
+        ('project', '0009_remove_apartment_laundry_room'),
     ]
 
     operations = [
@@ -23,11 +23,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='apartment',
             name='bathrooms',
-            field=models.ManyToManyField(blank=True, related_name='+', to='main.room'),
+            field=models.ManyToManyField(blank=True, related_name='+', to='project.room'),
         ),
         migrations.AddField(
             model_name='apartment',
             name='bedrooms',
-            field=models.ManyToManyField(blank=True, related_name='+', to='main.room'),
+            field=models.ManyToManyField(blank=True, related_name='+', to='project.room'),
         ),
     ]

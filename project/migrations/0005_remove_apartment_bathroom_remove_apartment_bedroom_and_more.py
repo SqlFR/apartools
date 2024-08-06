@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0004_remove_room_number_room_room_type_and_more'),
+        ('project', '0004_remove_room_number_room_room_type_and_more'),
     ]
 
     operations = [
@@ -23,12 +23,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='apartment',
             name='kitchen',
-            field=models.ForeignKey(limit_choices_to={'room_type': 'KI'}, on_delete=django.db.models.deletion.CASCADE, related_name='Cuisine', to='main.room'),
+            field=models.ForeignKey(limit_choices_to={'room_type': 'KI'}, on_delete=django.db.models.deletion.CASCADE, related_name='Cuisine', to='project.room'),
         ),
         migrations.AlterField(
             model_name='apartment',
             name='laundry_room',
-            field=models.ForeignKey(limit_choices_to={'room_type': 'LA'}, on_delete=django.db.models.deletion.CASCADE, related_name='Buanderie', to='main.room'),
+            field=models.ForeignKey(limit_choices_to={'room_type': 'LA'}, on_delete=django.db.models.deletion.CASCADE, related_name='Buanderie', to='project.room'),
         ),
         migrations.AlterField(
             model_name='room',

@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0015_alter_apartment_rooms'),
+        ('project', '0015_alter_apartment_rooms'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='apartment',
             name='rooms',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='main.room'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='project.room'),
         ),
     ]

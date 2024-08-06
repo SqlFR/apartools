@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0023_alter_room_apartment'),
+        ('project', '0023_alter_room_apartment'),
     ]
 
     operations = [
@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='room',
             name='apartment',
-            field=models.ManyToManyField(related_name='apartment', to='main.apartment'),
+            field=models.ManyToManyField(related_name='apartment', to='project.apartment'),
         ),
     ]
