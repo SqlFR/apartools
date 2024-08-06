@@ -1,3 +1,5 @@
 .env
 apartools/settings.py
 /env/
+db.sqlite3
+package.json
