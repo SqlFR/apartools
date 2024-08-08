@@ -4,7 +4,7 @@
     {% for apartment in apartments %}
         <ul>
             <li>
-                <a href="{% url 'detail' apartment.slug %}">{{ apartment.name }}</a>
+                <a href="{% url 'details' apartment.slug %}">{{ apartment.name }}</a>
             </li>
         </ul>
     {% endfor %}
