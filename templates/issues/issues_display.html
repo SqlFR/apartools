@@ -1,0 +1,37 @@
+{% block issues_display %}
+    {% if apartment_issues_dict %}
+            <h2 class="title-category">Liste des incidents</h2>
+          <div class="border rounded-md overflow-hidden w-full">
+        <table class="w-full text-sm bg-white md:text-base">
+          <thead>
+            <tr class="text-lg">
+              <th class="md:px-4 md:py-2 p-1 text-left">Pièce</th>
+              <th class="md:px-4 md:py-2 p-1 text-left">Type</th>
+              <th class="md:px-4 md:py-2 p-1 text-left">Détails</th>
+              <th class="md:px-4 md:py-2 p-1 text-left">Actions</th>
+            </tr>
+          </thead>
+
+
+    {% for room, issues in apartment_issues_dict.items %}
+    {% for issue, details_list in issues.items %}
+    {% for detail, issue_id in details_list %}
+    <tbody id="issues">
+      <tr>
+        <th class="md:px-4 md:py-2 p-1 text-left border-t ">{{ room }}</th>
+        <td class="md:px-4 md:py-2 p-1 border-t ">{{ issue }}</td>
+        <td class="md:px-4 md:py-2 p-1 border-t ">{{ detail }}</td>
+        <td class="md:px-4 md:py-2 p-1 text-center md:text-left border-t">
+          <button class='btn-delete' hx-delete="{% url 'issues:delete_issue' issue_id %}" title="Supprimer l'incident">❌</button>
+{#          <button class='btn-edit' hx-edit="{% url 'edit_issue' issue_id %}" title="Modifier l'incident">✏️</button>#}
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+    {% endfor %}
+    {% endfor %}
+               </table>
+      </div>
+
+    {% endif %}
+{% endblock %}
