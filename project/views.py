@@ -1,10 +1,8 @@
-from collections import defaultdict
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-
 from issues.models import Issue
 from project.models import Apartment
+from collections import defaultdict
 
 
 @login_required()

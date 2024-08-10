@@ -27,11 +27,12 @@ def add_issue(request, slug):
 
 
 @require_http_methods(['DELETE'])
-def delete_issue(request, issue_id, *args):
+def delete_issue(request, issue_id):
     issue = get_object_or_404(Issue, id=issue_id)
-    print('L\'issue dans la fonction delete_issue', issue)
+    apartment = get_object_or_404(Apartment, id=issue.apartment_id)
+    print(apartment.slug)
     issue.delete()
-    return redirect('project:details', apartment_id=issue.apartment.id)
+    return render(request, 'project/details.html')
 
 
 # @require_http_methods(['EDIT'])

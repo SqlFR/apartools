@@ -2,7 +2,6 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from issues.views import add_issue
 from project.views import index, details
 from accounts.views import logout_user, UserLoginView
 
