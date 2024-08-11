@@ -1,56 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="main">
+<div class="main">
     <div class="container card-head-apart">
         <h1 class="card-apart-name">{{ apartment.name }}</h1>
         <div class="card-head-apart-col-label">
-          <ul>
-            <li class="card-label">{{ apartment.bedroom }} chambre{{ apartment.bedroom|pluralize }}</li>
-            <li class="card-label">{{ apartment.bathroom }} salle{{ apartment.bathroom|pluralize }} de bain</li>
-          </ul>
-          <p class="font-normal text-xs">Ajouté le {{ apartment.created_at|date:'d F Y à H:i' }}</p>
+            <ul>
+                <li class="card-label">{{ apartment.bedroom }} chambre{{ apartment.bedroom|pluralize }}</li>
+                <li class="card-label">{{ apartment.bathroom }} salle{{ apartment.bathroom|pluralize }} de bain</li>
+            </ul>
+            <p class="font-normal text-xs">Ajouté le {{ apartment.created_at|date:'d F Y à H:i' }}</p>
         </div>
         <div class="card-head-apart-col-btn">
-         <a class="btn secondary-btn"
-             href="{% url 'issues:add_issue' slug=apartment.slug %}">Ajouter incidents</a>
-          <a class="btn secondary-btn"
-             href="">Les accessoires</a>
-        </div>
+            <a class="btn secondary-btn"
+            href="">Les accessoires</a>
     </div>
-    {% include 'issues/issues_display.html' %}
+</div>
     <div class="w-full">
-      <h2 class="title-category">Liste des accessoires</h2>
-      <div class="grid grid-cols-2 grid-rows-2 md:grid-cols-4 gap-4">
-        {% for status, sheets in apartment_sheets.items %}
-        <div class="border h-fit border-gray-200 rounded-md overflow-hidden">
-          <table class="w-full text-sm bg-white md:text-base">
-            <thead>
-             <tr class="text-lg">
-               <th class="md:px-4 md:py-2 p-1 text-left">
-                 {{ status }}
-               </th>
-             </tr>
-            </thead>
-            {% if sheets %}
-            <tbody>
-              {% for sheet in sheets %}
-              <tr>
-                <td class="md:px-4 md:py-2 p-1 border-t">{{ sheet }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-              {% else %}
-              <tbody>
-                <tr>
-                  <td class="md:px-4 md:py-2 p-1 border-t">Non renseigné</td>
-                </tr>
-              </tbody>
-            {% endif %}
-          </table>
-        </div>
-        {% endfor %}
-      </div>
+        {% include 'issues/issues_display.html' %}
     </div>
-  </div>
+    <h2 class="title-category">Liste des accessoires</h2>
+    <div class="grid grid-cols-2 grid-rows-2 md:grid-cols-4 gap-4">
+        {% for status, sheets in apartment_sheets.items %}
+            <div class="border h-fit border-gray-200 rounded-md overflow-hidden">
+                <table class="w-full text-sm bg-white md:text-base">
+                    <thead>
+                        <tr class="text-lg">
+                        <th class="md:px-4 md:py-2 p-1 text-left">
+                        {{ status }}
+                        </th>
+                        </tr>
+                    </thead>
+                    {% if sheets %}
+                    <tbody>
+                        {% for sheet in sheets %}
+                        <tr>
+                        <td class="md:px-4 md:py-2 p-1 border-t">{{ sheet }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    {% else %}
+                    <tbody>
+                        <tr>
+                        <td class="md:px-4 md:py-2 p-1 border-t">Non renseigné</td>
+                        </tr>
+                    </tbody>
+                    {% endif %}
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

@@ -1,4 +1,6 @@
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render, reverse
+from django.template.loader import render_to_string
 from django_ratelimit.decorators import ratelimit
 from django.views.decorators.http import require_http_methods
 
@@ -7,17 +9,27 @@ from issues.models import Issue
 from issues.forms import FormAddIssue
 
 
-@ratelimit(key='user_or_ip', rate='10/ms')
+@ratelimit(key='user_or_ip', rate='1/s')
 def add_issue(request, slug):
     apartment = get_object_or_404(Apartment, slug=slug)
+
     if request.method == 'POST':
         form_add_issue = FormAddIssue(request.POST, apartment=apartment)
+
         if form_add_issue.is_valid():
             form_add_issue.instance.apartment = apartment
             form_add_issue.save()
-            return redirect(f"{reverse('issues:add_issue', kwargs={'slug': apartment.slug})}?success=1")
-    else:
-        form_add_issue = FormAddIssue(apartment=apartment, label_suffix='')
+
+            context = {
+                'room': form_add_issue.instance.room,
+                'issue': form_add_issue.instance.issue,
+                'detail': form_add_issue.instance.details,
+                'id': form_add_issue.instance.id,
+            }
+
+            return HttpResponse(render_to_string('issues/issue.html', context))
+
+    form_add_issue = FormAddIssue(apartment=apartment, label_suffix='')
     context = {
         'apartment': apartment,
         'form_add_issue': form_add_issue
@@ -29,10 +41,8 @@ def add_issue(request, slug):
 @require_http_methods(['DELETE'])
 def delete_issue(request, issue_id):
     issue = get_object_or_404(Issue, id=issue_id)
-    apartment = get_object_or_404(Apartment, id=issue.apartment_id)
-    print(apartment.slug)
     issue.delete()
-    return render(request, 'project/details.html')
+    return HttpResponse('')
 
 
 # @require_http_methods(['EDIT'])

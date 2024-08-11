@@ -1,9 +1,15 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form_add_issue }}
-    <button type="submit" title="Ajouter incident">Ajouter incident</button>
-    </form>
-{% endblock %}
+<form hx-post="{% url 'issues:add_issue' slug=apartment.slug %}" hx-target="#issues" hx-swap="beforeend">
+    {% csrf_token %}
+{#    {% if errors %}#}
+{#        <div class="errorlist">#}
+        {% for error in errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+{#        </div>#}
+{#    {% endif %}#}
+    {{ form_add_issue }}
+    <button type="submit"
+            id="btn-add-issue"
+            title="Ajouter incident"
+            onclick="disabledButtonAfterClick()">Ajouter incident</button>
+</form>

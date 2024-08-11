@@ -1,4 +1,8 @@
+from django.utils.translation import gettext_lazy as _
+
 from django import forms
+from django.core.exceptions import ValidationError
+
 from issues.models import Issue, IssueType
 from project.models import Room
 
@@ -10,6 +14,7 @@ class FormAddIssue(forms.ModelForm):
         widgets = {
             'details': forms.Textarea(attrs={'class': 'form-text-area', 'rows': '2'})
         }
+
 
     def clean_details(self):
         details = self.cleaned_data['details']
