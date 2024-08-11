@@ -47,6 +47,12 @@ body {
 .disable-link {
     pointer-events: none;
 }
+
+/* Table */
+.table-cell-p {
+    @apply md:px-4 md:py-2 p-1
+}
+
 /* Cartes d'en tête */
 
 .card-head-apart {
@@ -73,6 +79,10 @@ body {
 
 .card-apart-name {
     @apply text-xl font-semibold mb-2 col-span-full
+}
+
+.card-category {
+    @apply w-full
 }
 
 .card-label {

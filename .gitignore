@@ -3,3 +3,4 @@ apartools/settings.py
 /env/
 db.sqlite3
 package.json
+todo.txt

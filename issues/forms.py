@@ -15,7 +15,6 @@ class FormAddIssue(forms.ModelForm):
             'details': forms.Textarea(attrs={'class': 'form-text-area', 'rows': '2'})
         }
 
-
     def clean_details(self):
         details = self.cleaned_data['details']
         return details.capitalize()
@@ -29,5 +28,5 @@ class FormAddIssue(forms.ModelForm):
         rooms = Room.objects.filter(apartment_id=apartment.id)
 
         if apartment:
-            self.fields['room'] = forms.ModelChoiceField(queryset=rooms, initial='')
+            self.fields['room'] = forms.ModelChoiceField(queryset=rooms, initial='', label='Pièce')
             self.fields['issue'] = forms.ModelChoiceField(queryset=IssueType.objects.all(), label='Type d\'incident', initial='')

@@ -2,13 +2,14 @@
     <button hx-get="add_issue" hx-target="#contain-form-add-issue">Ajouter incidents</button>
     <div id="contain-form-add-issue"></div>
         <div class="border rounded-md overflow-hidden w-full">
-            <table id="issues" class="w-full text-sm bg-white md:text-base">
+            <table id="issues" class="w-full text-sm bg-white md:text-base"
+                               style="table-layout: fixed" >
                 <thead>
                     <tr class="text-lg">
-                        <th class="md:px-4 md:py-2 p-1 text-left">Pièce</th>
-                        <th class="md:px-4 md:py-2 p-1 text-left">Type</th>
-                        <th class="md:px-4 md:py-2 p-1 text-left">Détails</th>
-                        <th class="md:px-4 md:py-2 p-1 text-left">Actions</th>
+                        <th class="table-cell-p w-1/6">Pièce</th>
+                        <th class="table-cell-p text-left w-1/6">Type</th>
+                        <th class="table-cell-p text-left w-3/6">Détails</th>
+                        <th class="table-cell-p text-left w-1/6">Actions</th>
                     </tr>
                 </thead>
                 {% for room, issues in apartment_issues_dict.items %}
@@ -16,10 +17,10 @@
                 {% for detail, issue_id in details_list %}
                     <tbody>
                         <tr>
-                            <th class="md:px-4 md:py-2 p-1 text-left border-t">{{ room }}</th>
-                            <td class="md:px-4 md:py-2 p-1 border-t">{{ issue }}</td>
-                            <td class="md:px-4 md:py-2 p-1 border-t">{{ detail }}</td>
-                            <td class="md:px-4 md:py-2 p-1 text-center md:text-left border-t">
+                            <th class="table-cell-p text-left border-t">{{ room }}</th>
+                            <td class="table-cell-p border-t">{{ issue }}</td>
+                            <td class="table-cell-p border-t" style="word-wrap: break-word">{{ detail }}</td>
+                            <td class="table-cell-p text-center md:text-left border-t">
                                 <button class='btn-delete'
                                         hx-delete="{% url 'issues:delete_issue' issue_id %}"
                                         hx-target="closest tbody"
