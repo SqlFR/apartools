@@ -12,15 +12,15 @@ class FormAddIssue(forms.ModelForm):
         model = Issue
         fields = ['room', 'issue', 'details']
         widgets = {
-            'details': forms.Textarea(attrs={'class': 'form-text-area', 'rows': '2'})
+            'details': forms.Textarea(attrs={'class': 'form-text-area', 'rows': '2'}),
         }
 
     def clean_details(self):
         details = self.cleaned_data['details']
         return details.capitalize()
 
-    # Récupère l'instance d'appartement
     def __init__(self, *args, **kwargs):
+        # Récupère l'instance d'appartement
         apartment = kwargs.pop('apartment', None)
         super(FormAddIssue, self).__init__(*args, **kwargs)
 
@@ -28,5 +28,11 @@ class FormAddIssue(forms.ModelForm):
         rooms = Room.objects.filter(apartment_id=apartment.id)
 
         if apartment:
-            self.fields['room'] = forms.ModelChoiceField(queryset=rooms, initial='', label='Pièce')
-            self.fields['issue'] = forms.ModelChoiceField(queryset=IssueType.objects.all(), label='Type d\'incident', initial='')
+            self.fields['room'] = forms.ModelChoiceField(queryset=rooms,
+                                                         initial='',
+                                                         label='Pièce',
+                                                         widget=forms.Select(attrs={'class': 'form-control'}))
+            self.fields['issue'] = forms.ModelChoiceField(queryset=IssueType.objects.all(),
+                                                          label='Type d\'incident',
+                                                          initial='',
+                                                          widget=forms.Select(attrs={'class': 'form-control'}))

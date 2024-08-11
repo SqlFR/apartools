@@ -1,15 +1,11 @@
-<form hx-post="{% url 'issues:add_issue' slug=apartment.slug %}" hx-target="#issues" hx-swap="beforeend">
+<form hx-post="{% url 'issues:add_issue' slug=apartment.slug %}"
+      hx-target="#issues"
+      hx-swap="beforeend"
+      class="form-add-issue flex flex-col mx-auto w-3/4">
     {% csrf_token %}
-{#    {% if errors %}#}
-{#        <div class="errorlist">#}
-        {% for error in errors %}
-            <p>{{ error }}</p>
-        {% endfor %}
-{#        </div>#}
-{#    {% endif %}#}
     {{ form_add_issue }}
     <button type="submit"
             id="btn-add-issue"
             title="Ajouter incident"
-            onclick="disabledButtonAfterClick()">Ajouter incident</button>
+            onclick="disabledButtonAfterClick()">Valider</button>
 </form>

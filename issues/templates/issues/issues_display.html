@@ -1,15 +1,22 @@
 {% block issues_display %}
-    <button hx-get="add_issue" hx-target="#contain-form-add-issue">Ajouter incidents</button>
+    <div class="btn-container flex flex-col justify-center mb-4">
+        <button class="btn-add-issue flex flex-col items-center font-bold" onclick="toggleForm(this)" hx-get="add_issue" hx-target="#contain-form-add-issue">
+            <span>Ajouter incidents</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+    </div>
     <div id="contain-form-add-issue"></div>
         <div class="border rounded-md overflow-hidden w-full">
             <table id="issues" class="w-full text-sm bg-white md:text-base"
                                style="table-layout: fixed" >
                 <thead>
                     <tr class="text-lg">
-                        <th class="table-cell-p w-1/6">Pièce</th>
-                        <th class="table-cell-p text-left w-1/6">Type</th>
-                        <th class="table-cell-p text-left w-3/6">Détails</th>
-                        <th class="table-cell-p text-left w-1/6">Actions</th>
+                        <th class="table-cell-p">Pièce</th>
+                        <th class="table-cell-p text-left">Type</th>
+                        <th class="table-cell-p text-left w-1/3">Détails</th>
+                        <th class="table-cell-p text-left">Actions</th>
                     </tr>
                 </thead>
                 {% for room, issues in apartment_issues_dict.items %}

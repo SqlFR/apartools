@@ -7,25 +7,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn {
-    @apply md:text-base p-2 font-semibold text-sm text-center rounded-md transition ease-in-out
-}
-
-.primary-btn {
-    @apply border-2 border-sky-800 bg-sky-800 text-white box-border
-}
-.primary-btn:focus {
-    @apply border-2 border-sky-800 bg-white text-sky-800
-}
-
-.span-description {
-    @apply font-medium mt-3;
-}
 
 
-.breadcrumb {
-    @apply text-sky-800 text-sm underline pl-1.5
-}
+
 /* global */
 
 body {
@@ -47,6 +31,11 @@ body {
 .disable-link {
     pointer-events: none;
 }
+
+.span-description {
+    @apply font-medium mt-3;
+}
+
 
 /* Table */
 .table-cell-p {
@@ -82,7 +71,7 @@ body {
 }
 
 .card-category {
-    @apply w-full
+    @apply md:max-w-xl w-full
 }
 
 .card-label {
@@ -92,7 +81,7 @@ body {
 /* button */
 
 .btn {
-    @apply md:text-base p-1 font-semibold text-sm text-center rounded-md transition ease-in-out
+    @apply md:text-base md:px-4 p-1 font-semibold text-sm text-center transition ease-in-out
 }
 
 .primary-btn {
@@ -119,7 +108,7 @@ body {
 /* add_issue.html */
 
 .form-add-issue {
-    @apply md:max-w-xl md:px-6 md:py-4 w-full p-2 border rounded-md overflow-hidden bg-white
+    @apply md:max-w-xl md:px-6 md:py-4 w-3/4 p-2 border rounded-md overflow-hidden bg-white
 }
 
 .input-inline-form-add-issue {
@@ -134,7 +123,7 @@ body {
 }
 
 .form-text-area {
-    @apply w-1/2 border-2 border-gray-300 outline-none rounded-md resize-none
+    @apply w-full border-2 border-gray-300 outline-none rounded-md resize-none px-2
 }
 
 /* add_apartment.html */
@@ -270,4 +259,28 @@ body {
     transform: rotate(90deg);
     transition:
     transform 0.3s ease-out;
+}
+
+.btn-add-issue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-issue svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-add-issue[aria-expanded="true"] svg {
+    transform: rotate(180deg); /* Faire pivoter la flèche vers le haut lorsque le formulaire est visible */
+}
+
+.form-control {
+    @apply block p-1 m-1 pl-0 ml-0
 }
