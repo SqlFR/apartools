@@ -3,7 +3,6 @@ from django.db import models
 from project.models import Apartment
 
 
-# Create your models here.
 class AccessoryType(models.Model):
     ROOM_CHOICES = (
         ('KITCHEN', 'Cuisine'),
@@ -37,13 +36,13 @@ class Accessory(models.Model):
     ]
 
     apartment = models.ForeignKey(Apartment, on_delete=models.CASCADE)
-    sheet = models.ForeignKey(AccessoryType, on_delete=models.CASCADE)
+    accessory = models.ForeignKey(AccessoryType, on_delete=models.CASCADE)
     status = models.CharField(max_length=24, choices=STATUS_CHOICES, default='NOT_HANDLED')
 
     def __str__(self):
-        return f"{self.sheet.name}"
+        return f"{self.accessory.name}"
 
     class Meta:
-        unique_together = ('apartment', 'sheet')  # Chaque paire doit être unique
+        unique_together = ('apartment', 'accessory')  # Chaque paire doit être unique
         verbose_name = 'Accessoire'
         verbose_name_plural = 'Accessoires'

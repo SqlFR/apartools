@@ -20,36 +20,12 @@
         <h2 class="title-category">Gestion des incidents</h2>
         {% include 'issues/issues_display.html' %}
     </div>
-    <h2 class="title-category">Liste des accessoires</h2>
-    <div class="grid grid-cols-2 grid-rows-2 md:grid-cols-4 gap-4">
-        {% for status, sheets in apartment_sheets.items %}
-            <div class="border h-fit border-gray-200 rounded-md overflow-hidden">
-                <table class="w-full text-sm bg-white md:text-base">
-                    <thead>
-                        <tr class="text-lg">
-                        <th class="md:px-4 md:py-2 p-1 text-left">
-                        {{ status }}
-                        </th>
-                        </tr>
-                    </thead>
-                    {% if sheets %}
-                    <tbody>
-                        {% for sheet in sheets %}
-                        <tr>
-                        <td class="md:px-4 md:py-2 p-1 border-t">{{ sheet }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                    {% else %}
-                    <tbody>
-                        <tr>
-                        <td class="md:px-4 md:py-2 p-1 border-t">Non renseigné</td>
-                        </tr>
-                    </tbody>
-                    {% endif %}
-                </table>
-            </div>
-        {% endfor %}
+    <button class="title-category"
+            hx-get="accessories"
+            hx-target="#contain-accessories">Liste des accessoires</button>
+    <div id="contain-accessories" class="grid grid-cols-2 grid-rows-2 md:grid-cols-4 gap-4">
+{#        {% include 'accessories_display.html' %}#}
+{#        {% include 'accessories_not_handled_display.html' %}#}
     </div>
 </div>
 {% endblock %}

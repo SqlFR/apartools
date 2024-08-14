@@ -11,5 +11,6 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('admin/', admin.site.urls),
     path('apartment/<str:slug>/', details, name='details'),
-    path('', include('issues.urls', namespace='issues'))
+    path('', include('issues.urls', namespace='issues')),
+    path('', include('accessories.urls', namespace='accessories'))
 ]
