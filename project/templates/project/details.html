@@ -11,21 +11,10 @@
             </ul>
             <p class="font-normal text-xs">Ajouté le {{ apartment.created_at|date:'d F Y à H:i' }}</p>
         </div>
-        <div class="card-head-apart-col-btn">
-            <a class="btn secondary-btn"
-            href="">Les accessoires</a>
     </div>
-</div>
     <div class="container card-category">
         <h2 class="title-category">Gestion des incidents</h2>
         {% include 'issues/issues_display.html' %}
-    </div>
-    <button class="title-category"
-            hx-get="accessories"
-            hx-target="#contain-accessories">Liste des accessoires</button>
-    <div id="contain-accessories" class="grid grid-cols-2 grid-rows-2 md:grid-cols-4 gap-4">
-{#        {% include 'accessories_display.html' %}#}
-{#        {% include 'accessories_not_handled_display.html' %}#}
     </div>
 </div>
 {% endblock %}
