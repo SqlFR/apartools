@@ -4,3 +4,5 @@ apartools/settings.py
 db.sqlite3
 package.json
 todo.txt
+__pycache__
+*.pyc
