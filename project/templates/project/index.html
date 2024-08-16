@@ -1,27 +1,9 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    {% for apartment in apartments %}
-        <ul>
-            <li>
-                <a href="{% url 'details' apartment.slug %}">{{ apartment.name }}</a>
-            </li>
-        </ul>
-    {% endfor %}
-{% endblock %}
+{% include 'accounts/login.html' %}
 
-{% block login_user %}
- <h1>Se connecter</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <p>
-            <label for="username">Nom d'utilisateur</label>
-            <input id="username" type="text" name="username">
-        </p>
-        <p>
-            <label for="password">Mot de passe</label>
-            <input id="password" type="password" name="password">
-        </p>
-        <button type="submit">Se connecter</button>
-    </form>
+{% block content %}
+
+<a href="{% url 'apartments_list' %}">Voir les apparts</a>
+
 {% endblock %}
