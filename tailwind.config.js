@@ -7,7 +7,12 @@ module.exports = {
       "./project/templates/**/*.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+        flexGrow: {
+            '2': 2, // Ajoute flex-grow-2
+            '3': 3, // Ajoute flex-grow-3
+}
+    },
   },
   plugins: [],
 }
