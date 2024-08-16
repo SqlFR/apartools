@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for apartment in apartments %}
+        <ul>
+            <li>
+                <a href="{% url 'details' apartment.slug %}">{{ apartment.name }}</a>
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock %}
