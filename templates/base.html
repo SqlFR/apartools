@@ -8,13 +8,28 @@
     <script src="https://unpkg.com/htmx.org@1.9.2" defer></script>
     <script src="{% static '/js/details.js' %}" defer></script>
 </head>
+
+<header>
+    <nav>
+        <ul class="flex">
+            <li class="text-red-600"><a href="{% url 'index' %}">Apartools</a></li>
+            <li><a href="{% url 'apartments_list' %}">Les appartements</a></li>
+            <li>Mon compte</li>
+            <li>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">Déconnexion</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+</header>
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
-    <h1 class="text-red-600">Apartools</h1>
     {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Déconnexion</a>
-        {% block content %}{% endblock %}
+        {% block content %}
+        {% endblock %}
     {% else %}
-        {% block login_user %}{% endblock %}
+        {% block login_user %}
+        {% endblock %}
     {% endif %}
 </body>
 </html>

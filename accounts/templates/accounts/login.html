@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block login_user %}
- <h1>Se connecter</h1>
     <form method="POST">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
