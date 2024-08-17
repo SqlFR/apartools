@@ -1,18 +1,26 @@
 // Désactive bouton ajouter incident après le clic
 function disabledButtonAfterClick() {
-    const btnAddIssue = document.getElementById('btn-add-issue');
+    const btn = document.querySelector('.btn');
     setTimeout(() => {
-        btnAddIssue.disabled = true;
+        btn.disabled = true;
     }, 10)
 
     setTimeout(() => {
-        btnAddIssue.disabled = false;
+        btn.disabled = false;
     }, 1000);
 }
 
 // Gère la flèche sous le bouton Ajouter incidents et le changement du texte
+
+// Récupère le texte du bouton pour le retourner après la réduction du slide
+const button_to_slide = document.querySelector('.btn-open-slide-form')
+const initial_text_button = button_to_slide.querySelector('span').textContent;
+
 function toggleForm(button) {
-    let formContainer = document.getElementById('contain-form-add-issue');
+    let formContainer = document.querySelector('.contain-slide-form');
+
+    console.log(initial_text_button)
+
     setTimeout(() => {
         button.disabled = true;
     }, 10)
@@ -23,7 +31,7 @@ function toggleForm(button) {
     }, 1000);
     if (formContainer.style.display === 'block') {
         formContainer.style.display = 'none';
-        button.querySelector('span').textContent = 'Ajouter incidents';
+        button.querySelector('span').textContent = initial_text_button;
         button.setAttribute('aria-expanded', 'false');
 
     } else {
@@ -33,5 +41,3 @@ function toggleForm(button) {
     }
 }
 
-
-// Ajoute class label-input a la div qui contient label/input ds le form add issue et add apart

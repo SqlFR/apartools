@@ -12,11 +12,11 @@ class LoginRequiredMiddleware:
 
     def __call__(self, request):
         if (not request.user.is_authenticated and
-                not request.path.startswith(reverse('login')) and
+                not request.path.startswith(reverse('accounts:login')) and
                 not request.path.startswith('/admin/')):
             # Redirige vers l'URL initialement renseignée
             print(request.path)
-            return redirect(f"{reverse('login')}?{urlencode({'next': request.path})}")
+            return redirect(f"{reverse('accounts:login')}?{urlencode({'next': request.path})}")
 
         response = self.get_response(request)
         return response

@@ -15,7 +15,11 @@ body {
 }
 
 .container {
-    @apply md:p-6 p-2 border bg-white rounded-md overflow-hidden
+    @apply md:p-6 py-2 px-4 border bg-white rounded-md overflow-hidden
+}
+
+.btn-slide-container {
+    @apply flex flex-col justify-center mb-4 w-full
 }
 
 .main {
@@ -110,7 +114,7 @@ form {
 
 /* add_issue.html */
 
-.form-add-issue {
+.form-add-slide {
     @apply flex flex-col mx-auto w-3/4 md:max-w-xl md:px-6 md:py-4 p-2 border rounded-md overflow-hidden bg-white
 }
 
@@ -152,15 +156,15 @@ form {
 /*    cursor: pointer;*/
 /*}*/
 
-.btn-open-add-issue {
+.btn-open-slide-form {
      @apply flex flex-col items-center justify-center font-bold py-2
  }
 
-.btn-open-add-issue svg {
+.btn-open-slide-form svg {
     transition: transform 0.3s ease;
 }
 
-.btn-open-add-issue[aria-expanded="true"] svg {
+.btn-open-slide-form[aria-expanded="true"] svg {
     transform: rotate(180deg); /* Faire pivoter la flèche vers le haut lorsque le formulaire est visible */
 }
 

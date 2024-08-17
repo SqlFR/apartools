@@ -7,11 +7,9 @@ from accessories.models import AccessoryType, Accessory
 # Ajoute automatiquement les accessoires (enregistré en db) à la création de l'appart
 @receiver(post_save, sender=Apartment)
 def add_accessories_when_apartment_created(created, instance, **kwargs):
-    print('Rentre dans la methode add_accessories')
     if created:
-        print('Rentre dans le if created:')
         accessories = AccessoryType.objects.all()
-        print(accessories)
+
         for accessory in accessories:
             Accessory.objects.create(
                 apartment=instance,

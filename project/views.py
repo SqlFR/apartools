@@ -1,6 +1,10 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
+
 from issues.models import Issue
+from project.forms import FormAddApart
 from project.models import Apartment
 from collections import defaultdict
 
@@ -11,17 +15,34 @@ def index(request):
 
 
 @login_required()
-def add_apartment(request):
-    pass
-
-@login_required()
-def apartments_list(request):
+def apartments(request):
     apartments = Apartment.objects.all()
 
     context = {
-        'apartments': apartments
+        'apartments': apartments,
     }
-    return render(request, 'project/apartments_list.html', context)
+    return render(request, 'project/apartments.html', context)
+
+
+@login_required()
+def add_apart(request):
+    if request.method == 'POST':
+        form_add_apart = FormAddApart(request.POST)
+
+        if form_add_apart.is_valid():
+            form_add_apart.save()
+            response = HttpResponse(status=200)
+            response['HX-Redirect'] = ''
+            return response
+
+    else:
+        form_add_apart = FormAddApart()
+
+    context = {
+        'form_add_apart': form_add_apart
+    }
+
+    return render(request, 'project/add_apart.html', context)
 
 
 @login_required()

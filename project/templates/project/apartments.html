@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container w-4/5 md:w-3/5 my-2">
+        <div class="btn-slide-container w-3/5">
+            <button class="btn-open-slide-form"
+                        onclick="toggleForm(this)"
+                        hx-get="add_apart"
+                        hx-target="#slide-form-add-apart">
+                <span>Ajouter appartement</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
+                </svg>
+            </button>
+        <div id="slide-form-add-apart" class="contain-slide-form"></div>
+        </div>
+    </div>
+    <div class="flex flex-col items-center w-full gap-4 mt-2" id="apartments_list">
+    {% for apartment in apartments %}
+        <ul class="w-4/5 md:w-3/5">
+            <li>
+                <div class="container flex justify-between items-center w-full">
+                    <div class="flex flex-col">
+                        <a class="font-bold text-lg block mb-2">{{ apartment.name }}</a>
+                        <p>Chambre{{ apartment.bedroom|pluralize }} : {{ apartment.bedroom }}</p>
+                        <p>Salle{{ apartment.bathroom|pluralize }} de bain : {{ apartment.bathroom }}</p>
+                    </div>
+                    <a class="btn primary-btn h-fit" href="{% url 'project:details' apartment.slug %}">Fiche appart</a>
+                </div>
+            </li>
+        </ul>
+    {% endfor %}
+    </div>
+{% endblock %}

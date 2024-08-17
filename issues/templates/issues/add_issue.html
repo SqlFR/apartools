@@ -1,7 +1,7 @@
 <form hx-post="{% url 'issues:add_issue' slug=apartment.slug %}"
       hx-target="#issues"
       hx-swap="beforeend"
-      class="form-add-issue">
+      class="form-add-slide">
     {% csrf_token %}
     {{ form_add_issue }}
     <button type="submit"

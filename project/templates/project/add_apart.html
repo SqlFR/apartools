@@ -1,0 +1,12 @@
+<form hx-post="{% url 'project:add_apart' %}"
+      hx-trigger="submit"
+      hx-redirect="true"
+      class="form-add-slide text-center">
+    {% csrf_token %}
+    {{ form_add_apart }}
+    <button type="submit"
+            id="btn-add-apart"
+            class="btn primary-btn w-fit mx-auto mb-2 mt-4"
+            title="Ajouter appartement"
+            onclick="disabledButtonAfterClick()">Valider</button>
+</form>
