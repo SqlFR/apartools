@@ -12,7 +12,7 @@
 <header>
     <nav class="py-4 border-b shadow-sm">
         <ul class="flex justify-evenly text-center">
-            <li class="flex-grow-2 md:pl-8 pl-1 text-left text-red-600"><a href="{% url 'index' %}">Apartools</a></li>
+            <li class="flex-grow-4 md:pl-8 pl-1 text-left text-red-600"><a href="{% url 'index' %}">Apartools</a></li>
             {% if user.is_authenticated %}
                 <li class="flex-grow"><a href="{% url 'apartments_list' %}">Les apparts</a></li>
                 <li class="flex-grow"><a href="" title="A venir..">Mon compte</a></li>
@@ -31,6 +31,5 @@
         {% endblock %}
     {% endif %}
     </div>
-
 </body>
 </html>

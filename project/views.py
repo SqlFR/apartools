@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from issues.models import Issue
 from project.models import Apartment
@@ -10,6 +9,10 @@ from collections import defaultdict
 def index(request):
     return render(request, 'project/index.html')
 
+
+@login_required()
+def add_apartment(request):
+    pass
 
 @login_required()
 def apartments_list(request):

@@ -11,6 +11,7 @@ module.exports = {
         flexGrow: {
             '2': 2, // Ajoute flex-grow-2
             '3': 3, // Ajoute flex-grow-3
+            '4': 4, // Ajoute flex-grow-3
 }
     },
   },

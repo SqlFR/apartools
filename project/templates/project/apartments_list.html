@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="flex flex-col items-center w-full gap-4 mt-2">
     {% for apartment in apartments %}
-        <ul>
+        <ul class="w-4/5 md:w-3/5">
             <li>
-                <a href="{% url 'details' apartment.slug %}">{{ apartment.name }}</a>
+                <div class="container flex justify-between items-center w-full">
+                    <div class="flex flex-col">
+                        <a class="font-bold text-lg block mb-2">{{ apartment.name }}</a>
+                        <p>Chambre{{ apartment.bedroom|pluralize }} : {{ apartment.bedroom }}</p>
+                        <p>Salle{{ apartment.bathroom|pluralize }} de bain : {{ apartment.bathroom }}</p>
+                    </div>
+                    <a class="btn primary-btn h-fit" href="{% url 'details' apartment.slug %}">Fiche appart</a>
+                </div>
             </li>
         </ul>
     {% endfor %}
+    </div>
 {% endblock %}

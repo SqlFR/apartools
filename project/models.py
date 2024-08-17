@@ -8,7 +8,6 @@ from django.dispatch import receiver
 
 
 class Apartment(models.Model):
-
     name = models.CharField(max_length=32, unique=True, error_messages={
         'unique': 'Un appartement portant ce nom éxiste déjà.'
     }, verbose_name='Nom')
