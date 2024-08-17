@@ -15,13 +15,14 @@
             <li class="flex-grow-2 md:pl-8 pl-1 text-left text-red-600"><a href="{% url 'index' %}">Apartools</a></li>
             {% if user.is_authenticated %}
                 <li class="flex-grow"><a href="{% url 'apartments_list' %}">Les apparts</a></li>
-                <li class="flex-grow"><a href="">Mon compte</a></li>
+                <li class="flex-grow"><a href="" title="A venir..">Mon compte</a></li>
                 <li class="flex-grow"><a href="{% url 'logout' %}">Déconnexion</a></li>
             {% endif %}
         </ul>
     </nav>
 </header>
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <div class="main">
     {% if user.is_authenticated %}
         {% block content %}
         {% endblock %}
@@ -29,5 +30,7 @@
         {% block login_user %}
         {% endblock %}
     {% endif %}
+    </div>
+
 </body>
 </html>
