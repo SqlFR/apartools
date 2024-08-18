@@ -3,5 +3,7 @@
 {% include 'accounts/login.html' %}
 
 {% block content %}
-    <a href="{% url 'project:apartments' %}">Voir les apparts</a>
+    <div class="container flex justify-center w-1/4">
+        <a class="btn primary-btn" href="{% url 'project:apartments' %}">Voir mes apparts</a>
+    </div>
 {% endblock %}

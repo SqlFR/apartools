@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
+from django_ratelimit.decorators import ratelimit
 
 from issues.models import Issue
 from project.forms import FormAddApart
@@ -24,7 +25,7 @@ def apartments(request):
     return render(request, 'project/apartments.html', context)
 
 
-@login_required()
+@ratelimit(key='user_or_ip', rate='1/s')
 def add_apart(request):
     if request.method == 'POST':
         form_add_apart = FormAddApart(request.POST)
@@ -37,7 +38,6 @@ def add_apart(request):
 
     else:
         form_add_apart = FormAddApart()
-
     context = {
         'form_add_apart': form_add_apart
     }

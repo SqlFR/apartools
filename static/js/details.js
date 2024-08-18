@@ -19,8 +19,6 @@ const initial_text_button = button_to_slide.querySelector('span').textContent;
 function toggleForm(button) {
     let formContainer = document.querySelector('.contain-slide-form');
 
-    console.log(initial_text_button)
-
     setTimeout(() => {
         button.disabled = true;
     }, 10)
@@ -40,4 +38,6 @@ function toggleForm(button) {
         button.setAttribute('aria-expanded', 'true');
     }
 }
+
+
 
