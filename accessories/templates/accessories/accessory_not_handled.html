@@ -1,0 +1,18 @@
+<div class="flex" id="accessory-{{ accessory.id }}">
+    <h3 class="text-xl self-center">{{ accessory }}</h3>
+    <a hx-get="{% url 'accessories:accessory_handled' accessory.id %}"
+       hx-target="#accessory-ready"
+       hx-swap="beforeend"
+       hx-trigger="click"
+       hx-on="htmx:afterRequest: this.closest('div').remove()">Préparé</a>
+    <a hx-get="{% url 'accessories:accessory_delivery' accessory.id %}"
+       hx-target="#accessory-delivery"
+       hx-swap="beforeend"
+       hx-trigger="click"
+       hx-on="htmx:afterRequest: this.closest('div').remove()">Livré</a>
+    <a hx-get="{% url 'accessories:accessory_not_handled' accessory.id %}"
+       hx-target="#accessory-not-handled"
+       hx-swap="beforeend"
+       hx-trigger="click"
+       hx-on="htmx:afterRequest: this.closest('div').remove()">Indisponible</a>
+</div>

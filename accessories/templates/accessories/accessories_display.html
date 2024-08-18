@@ -1,7 +1,48 @@
 {% block accessories_display %}
-    <h2 class="title-category">Les accessoires nécessaires</h2>
-    <div class="w-full md:max-w-xl flex flex-col gap-8">
-      <div class="container">
-      </div>
+    <div id="accessories-not-handled" class="w-full md:max-w-xl flex flex-col gap-8">
+        {% for accessory in apartment_accessories %}
+            {% if accessory.status == 'NOT_HANDLED' %}
+                {% include 'accessories/accessory_not_handled.html' %}
+            {% endif %}
+        {% endfor %}
     </div>
+
+    <h2 class="title-category">Les accessoires préparés</h2>
+        <div id="accessory-ready">
+                {% for accessory in apartment_accessories %}
+                        {% if accessory.status == 'HANDLED' %}
+                            <div>
+                                {% include 'accessories/accessory.html' %}
+                            </div>
+                        {% endif %}
+                {% endfor %}
+                <a hx-get="{% url 'accessories:accessories_to_delivery' apartment.id %}"
+                   hx-target="#accessory-delivery"
+                   hx-on="htmx:afterRequest: {
+       const pElements = Array.from(this.parentElement.querySelectorAll('.contain-accessory'));
+       pElements.forEach(p => p.remove());}"
+                   hx-swap="beforeend">Définir comme livré</a>
+        </div>
+
+    <h2 class="title-category">Les accessoires livrés</h2>
+        <div id="accessory-delivery">
+    {% for accessory in apartment_accessories %}
+            {% if accessory.status == 'DELIVERY' %}
+                <div>
+                    {% include 'accessories/accessory.html' %}
+                </div>
+            {% endif %}
+    {% endfor %}
+        </div>
+
+    <h2 class="title-category">Les accessoires indisponibles</h2>
+        <div id="accessory-not-handled">
+    {% for accessory in apartment_accessories %}
+            {% if accessory.status == 'UNAVAILABLE' %}
+                <div>
+                    {% include 'accessories/accessory.html' %}
+                </div>
+            {% endif %}
+    {% endfor %}
+        </div>
 {% endblock %}

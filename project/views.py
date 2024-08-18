@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django_ratelimit.decorators import ratelimit
 
+from accessories.views import accessories_display
 from issues.models import Issue
 from project.forms import FormAddApart
 from project.models import Apartment
@@ -52,6 +53,7 @@ def add_apart(request):
 def details(request, slug):
     apartment = get_object_or_404(Apartment, slug=slug)
     apartment_issues = Issue.objects.filter(apartment_id=apartment.id)
+    apartment_accessories = accessories_display(request, apartment)
 
     # Initialisation du dictionnaire pour les incidents
     apartment_issues_dict = defaultdict(lambda: defaultdict(list))
@@ -68,5 +70,6 @@ def details(request, slug):
     context = {
         'apartment': apartment,
         'apartment_issues_dict': apartment_issues_dict,
+        'apartment_accessories': apartment_accessories
     }
     return render(request, 'project/details.html', context)

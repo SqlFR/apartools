@@ -38,6 +38,3 @@ function toggleForm(button) {
         button.setAttribute('aria-expanded', 'true');
     }
 }
-
-
-
