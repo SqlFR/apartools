@@ -27,17 +27,19 @@ def apartments(request):
 
 @ratelimit(key='user_or_ip', rate='1/s')
 def add_apart(request):
+
     if request.method == 'POST':
-        form_add_apart = FormAddApart(request.POST)
+        form_add_apart = FormAddApart(request.POST, label_suffix='')
 
         if form_add_apart.is_valid():
+
             form_add_apart.save()
             response = HttpResponse(status=200)
             response['HX-Redirect'] = ''
             return response
 
     else:
-        form_add_apart = FormAddApart()
+        form_add_apart = FormAddApart(label_suffix='')
     context = {
         'form_add_apart': form_add_apart
     }

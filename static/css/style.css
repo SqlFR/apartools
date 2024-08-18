@@ -7,7 +7,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* global */
 
 body {
@@ -36,6 +35,12 @@ body {
 
 .span-description {
     @apply font-medium mt-3;
+}
+
+/* Erreurs */
+
+.errorlist {
+    @apply text-red-600 text-sm
 }
 
 
@@ -115,7 +120,7 @@ form {
 /* add_issue.html */
 
 .form-add-slide {
-    @apply flex flex-col mx-auto md:w-3/4 md:max-w-xl md:px-6 md:py-4 border rounded-md overflow-hidden bg-white
+    @apply flex flex-col mx-auto md:w-3/4 md:max-w-xl md:px-6 md:py-4 rounded-md overflow-hidden bg-white
 }
 
 .form-control {

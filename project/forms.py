@@ -19,7 +19,8 @@ class FormAddApart(forms.ModelForm):
             'bathroom': forms.NumberInput(attrs={'class': 'form-control-input number-input'}),
         }
 
-        # Met la première lettre du champ 'name' en majuscule
-        def clean_name(self):
-            name = self.cleaned_data['name']
-            return name.capitalize()
+    def clean_name(self):
+        name = self.cleaned_data.get('name', '')
+        return name.strip().capitalize()  # Nettoyer et capitaliser le nom
+
+

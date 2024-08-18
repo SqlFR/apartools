@@ -12,7 +12,14 @@
                     <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
                 </svg>
             </button>
-        <div id="slide-form-add-apart" class="contain-slide-form"></div>
+        <div class="contain-slide-form">
+            <form hx-post="{% url 'project:add_apart' %}"
+              hx-trigger="submit"
+              hx-redirect="true"
+              id="slide-form-add-apart"
+              class="form-add-slide">
+            </form>
+        </div>
         </div>
     </div>
     <div class="flex flex-col items-center w-full gap-4 mt-2" id="apartments_list">
