@@ -4,15 +4,15 @@
        hx-target="#accessory-ready"
        hx-swap="beforeend"
        hx-trigger="click"
-       hx-on="htmx:afterRequest: this.closest('div').remove()">Préparé</a>
+       hx-on="htmx:afterRequest: this.closest('div').remove()" style="margin: 0 1em;">Préparé</a>
     <a hx-get="{% url 'accessories:accessory_delivery' accessory.id %}"
        hx-target="#accessory-delivery"
        hx-swap="beforeend"
        hx-trigger="click"
-       hx-on="htmx:afterRequest: this.closest('div').remove()">Livré</a>
+       hx-on="htmx:afterRequest: this.closest('div').remove()" style="margin: 0 1em;">Livré</a>
     <a hx-get="{% url 'accessories:accessory_not_handled' accessory.id %}"
        hx-target="#accessory-not-handled"
        hx-swap="beforeend"
        hx-trigger="click"
-       hx-on="htmx:afterRequest: this.closest('div').remove()">Indisponible</a>
+       hx-on="htmx:afterRequest: this.closest('div').remove()" style="margin: 0 1em;">Indisponible</a>
 </div>
