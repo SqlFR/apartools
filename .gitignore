@@ -5,4 +5,9 @@ db.sqlite3
 package.json
 todo.txt
 __pycache__/
+accessories/__pycache__/
+accounts/__pycache__/
+apartools/__pycache__/
+issues/__pycache__/
+project/__pycache__/
 *.pyc
