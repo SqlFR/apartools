@@ -8,13 +8,13 @@
                hx-swap="beforeend"
                hx-trigger="click"
                hx-on="htmx:afterRequest: document.getElementById('accessory-{{ accessory.id }}').remove()">Préparé</a>
-            <a class="text-green-600"
+            <a class="text-green-600 cursor-pointer"
                hx-get="{% url 'accessories:accessory_delivery' accessory.id %}"
                hx-target="#accessory-delivery"
                hx-swap="beforeend"
                hx-trigger="click"
                hx-on="htmx:afterRequest: document.getElementById('accessory-{{ accessory.id }}').remove()">Livré</a>
-            <a class="text-red-600"
+            <a class="text-red-600 cursor-pointer"
                hx-get="{% url 'accessories:accessory_not_handled' accessory.id %}"
                hx-target="#accessory-not-handled"
                hx-swap="beforeend"

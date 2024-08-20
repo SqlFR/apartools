@@ -1,5 +1,5 @@
 {% block accessories_display %}
-    <div id="accessories-not-handled" class="w-full md:max-w-xl flex flex-col">
+    <div id="accessories-not-handled" class="w-full md:max-w-xl flex flex-col mb-4">
         {% for accessory in apartment_accessories %}
             {% if accessory.status == 'NOT_HANDLED' %}
                 {% include 'accessories/accessory_not_handled.html' %}
@@ -18,7 +18,7 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <a class="btn primary-btn text-sm mx-auto block w-fit mt-2"
+        <a class="btn primary-btn text-sm mx-auto block w-fit mt-2 cursor-pointer"
            hx-get="{% url 'accessories:accessories_to_delivery' apartment.id %}"
            hx-target="#accessory-delivery"
            hx-on="htmx:afterRequest: {

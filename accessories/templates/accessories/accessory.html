@@ -2,7 +2,8 @@
     {% for accessory in accessories_to_delivery %}
         <div class="contain-accessory flex justify-between">
             <p>{{ accessory }}</p>
-            <a hx-get="{% url 'accessories:accessory_to_not_handled' accessory.id %}"
+            <a class="cursor-pointer"
+               hx-get="{% url 'accessories:accessory_to_not_handled' accessory.id %}"
                hx-target="#accessories-not-handled"
                hx-swap="beforeend"
                hx-trigger="click"
@@ -12,7 +13,8 @@
     {% else %}
     <div class="contain-accessory flex justify-between">
         <p>{{ accessory }}</p>
-        <a hx-get="{% url 'accessories:accessory_to_not_handled' accessory.id %}"
+        <a class="cursor-pointer"
+           hx-get="{% url 'accessories:accessory_to_not_handled' accessory.id %}"
            hx-target="#accessories-not-handled"
            hx-swap="beforeend"
            hx-trigger="click"
