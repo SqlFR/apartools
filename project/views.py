@@ -70,6 +70,6 @@ def details(request, slug):
     context = {
         'apartment': apartment,
         'apartment_issues_dict': apartment_issues_dict,
-        'apartment_accessories': apartment_accessories
+        'apartment_accessories': apartment_accessories,
     }
     return render(request, 'project/details.html', context)

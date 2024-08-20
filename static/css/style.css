@@ -26,7 +26,7 @@ body {
 }
 
 .title-category {
-    @apply text-2xl my-6 text-center
+    @apply text-2xl text-center
 }
 
 .disable-link {
@@ -108,6 +108,19 @@ form {
     @apply border-2 border-sky-800 bg-white text-sky-800
 }
 
+.btn-open-slide-form {
+     @apply flex flex-col items-center justify-center font-bold py-2
+ }
+
+.btn-open-slide-form svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-open-slide-form[aria-expanded="true"] svg {
+    transform: rotate(180deg); /* Faire pivoter la flèche vers le haut lorsque le formulaire est visible */
+}
+
+
 
 .secondary-btn {
     @apply border-2 border-sky-800 bg-white text-sky-800 box-border
@@ -116,6 +129,12 @@ form {
     @apply border-2 border-sky-800 bg-sky-800 text-white
 }
 
+/* Accessoires */
+
+.row {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
 
 /* add_issue.html */
 
@@ -132,44 +151,8 @@ form {
 }
 
 
-/*.modal-content {*/
-/*    background-color: #fefefe;*/
-/*    margin: 25% auto;*/
-/*    padding: 20px;*/
-/*    border: 1px solid #888;*/
-/*    width: 70%;*/
-/*    position: relative;*/
-/*}*/
+/* Colors */
 
-/*.modal-content {*/
-/*    @apply md:mt-60*/
-/*}*/
-/*.close-add, .close-delete {*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    right: 25px;*/
-/*    color: #aaa;*/
-/*    float: right;*/
-/*    font-size: 28px;*/
-/*    font-weight: bold;*/
-/*}*/
-
-/*.close-add:hover, .close-delete:hover,*/
-/*.close:focus, .close-delete:focus {*/
-/*    color: black;*/
-/*    text-decoration: none;*/
-/*    cursor: pointer;*/
-/*}*/
-
-.btn-open-slide-form {
-     @apply flex flex-col items-center justify-center font-bold py-2
- }
-
-.btn-open-slide-form svg {
-    transition: transform 0.3s ease;
+.text-blue-600-class {
+    @apply text-blue-600
 }
-
-.btn-open-slide-form[aria-expanded="true"] svg {
-    transform: rotate(180deg); /* Faire pivoter la flèche vers le haut lorsque le formulaire est visible */
-}
-

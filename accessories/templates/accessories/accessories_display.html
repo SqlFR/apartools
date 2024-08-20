@@ -1,5 +1,5 @@
 {% block accessories_display %}
-    <div id="accessories-not-handled" class="w-full md:max-w-xl flex flex-col gap-8">
+    <div id="accessories-not-handled" class="w-full md:max-w-xl flex flex-col">
         {% for accessory in apartment_accessories %}
             {% if accessory.status == 'NOT_HANDLED' %}
                 {% include 'accessories/accessory_not_handled.html' %}
@@ -7,42 +7,47 @@
         {% endfor %}
     </div>
 
-    <h2 class="title-category">Les accessoires préparés</h2>
+    <div class="container w-3/4" style="background-color: rgb(219 234 254 / var(--tw-bg-opacity))">
+        <h2 class="title-category">Prêt</h2>
         <div id="accessory-ready">
-                {% for accessory in apartment_accessories %}
-                        {% if accessory.status == 'HANDLED' %}
-                            <div>
-                                {% include 'accessories/accessory.html' %}
-                            </div>
-                        {% endif %}
-                {% endfor %}
-                <a hx-get="{% url 'accessories:accessories_to_delivery' apartment.id %}"
-                   hx-target="#accessory-delivery"
-                   hx-on="htmx:afterRequest: {
-       const pElements = Array.from(this.parentElement.querySelectorAll('.contain-accessory'));
-       pElements.forEach(p => p.remove());}"
-                   hx-swap="beforeend">Définir comme livré</a>
+            {% for accessory in apartment_accessories %}
+                {% if accessory.status == 'HANDLED' %}
+                    <div>
+                        {% include 'accessories/accessory.html' %}
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
+        <a class="btn primary-btn text-sm mx-auto block w-fit mt-2"
+           hx-get="{% url 'accessories:accessories_to_delivery' apartment.id %}"
+           hx-target="#accessory-delivery"
+           hx-on="htmx:afterRequest: {
+           const pElements = Array.from(this.parentElement.querySelectorAll('.contain-accessory'));
+           pElements.forEach(p => p.remove());}"
+           hx-swap="beforeend">Définir comme livré</a>
+    </div>
 
-    <h2 class="title-category">Les accessoires livrés</h2>
+    <div class="container w-3/4" style="background-color: rgb(220 252 231 / var(--tw-bg-opacity))">
+        <h2 class="title-category">Livré</h2>
         <div id="accessory-delivery">
-    {% for accessory in apartment_accessories %}
-            {% if accessory.status == 'DELIVERY' %}
-                <div>
+            {% for accessory in apartment_accessories %}
+                {% if accessory.status == 'DELIVERY' %}
                     {% include 'accessories/accessory.html' %}
-                </div>
-            {% endif %}
-    {% endfor %}
+                {% endif %}
+            {% endfor %}
         </div>
+    </div>
 
-    <h2 class="title-category">Les accessoires indisponibles</h2>
+    <div class="container w-3/4" style="background-color: rgb(254 226 226 / var(--tw-bg-opacity))">
+        <h2 class="title-category">Indispo</h2>
         <div id="accessory-not-handled">
-    {% for accessory in apartment_accessories %}
-            {% if accessory.status == 'UNAVAILABLE' %}
-                <div>
-                    {% include 'accessories/accessory.html' %}
-                </div>
-            {% endif %}
-    {% endfor %}
+            {% for accessory in apartment_accessories %}
+                {% if accessory.status == 'UNAVAILABLE' %}
+                    <div>
+                        {% include 'accessories/accessory.html' %}
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
+    </div>
 {% endblock %}

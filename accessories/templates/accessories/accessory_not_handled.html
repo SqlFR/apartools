@@ -1,18 +1,25 @@
-<div class="flex" id="accessory-{{ accessory.id }}">
-    <h3 class="text-xl self-center">{{ accessory }}</h3>
-    <a hx-get="{% url 'accessories:accessory_handled' accessory.id %}"
-       hx-target="#accessory-ready"
-       hx-swap="beforeend"
-       hx-trigger="click"
-       hx-on="htmx:afterRequest: this.closest('div').remove()" style="margin: 0 1em;">Préparé</a>
-    <a hx-get="{% url 'accessories:accessory_delivery' accessory.id %}"
-       hx-target="#accessory-delivery"
-       hx-swap="beforeend"
-       hx-trigger="click"
-       hx-on="htmx:afterRequest: this.closest('div').remove()" style="margin: 0 1em;">Livré</a>
-    <a hx-get="{% url 'accessories:accessory_not_handled' accessory.id %}"
-       hx-target="#accessory-not-handled"
-       hx-swap="beforeend"
-       hx-trigger="click"
-       hx-on="htmx:afterRequest: this.closest('div').remove()" style="margin: 0 1em;">Indisponible</a>
+<div id="accessory-{{ accessory.id }}">
+    <div class="row flex justify-between">
+        <h3 class="self-center">{{ accessory }}</h3>
+        <div class="flex gap-4">
+            <a class="text-blue-600 cursor-pointer"
+               hx-get="{% url 'accessories:accessory_handled' accessory.id %}"
+               hx-target="#accessory-ready"
+               hx-swap="beforeend"
+               hx-trigger="click"
+               hx-on="htmx:afterRequest: document.getElementById('accessory-{{ accessory.id }}').remove()">Préparé</a>
+            <a class="text-green-600"
+               hx-get="{% url 'accessories:accessory_delivery' accessory.id %}"
+               hx-target="#accessory-delivery"
+               hx-swap="beforeend"
+               hx-trigger="click"
+               hx-on="htmx:afterRequest: document.getElementById('accessory-{{ accessory.id }}').remove()">Livré</a>
+            <a class="text-red-600"
+               hx-get="{% url 'accessories:accessory_not_handled' accessory.id %}"
+               hx-target="#accessory-not-handled"
+               hx-swap="beforeend"
+               hx-trigger="click"
+               hx-on="htmx:afterRequest: document.getElementById('accessory-{{ accessory.id }}').remove()">Indisponible</a>
+        </div>
+    </div>
 </div>

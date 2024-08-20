@@ -1,22 +1,22 @@
 {% if accessories_to_delivery %}
     {% for accessory in accessories_to_delivery %}
-        <div class="contain-accessory flex">
+        <div class="contain-accessory flex justify-between">
             <p>{{ accessory }}</p>
             <a hx-get="{% url 'accessories:accessory_to_not_handled' accessory.id %}"
                hx-target="#accessories-not-handled"
                hx-swap="beforeend"
                hx-trigger="click"
-               hx-on="htmx:afterRequest: this.closest('.contain-accessory').remove()" style="margin: 0 1em;">X</a>
+               hx-on="htmx:afterRequest: this.closest('.contain-accessory').remove()">❌</a>
         </div>
     {% endfor %}
     {% else %}
-    <div class="contain-accessory flex">
+    <div class="contain-accessory flex justify-between">
         <p>{{ accessory }}</p>
         <a hx-get="{% url 'accessories:accessory_to_not_handled' accessory.id %}"
            hx-target="#accessories-not-handled"
            hx-swap="beforeend"
            hx-trigger="click"
-           hx-on="htmx:afterRequest: this.closest('.contain-accessory').remove()" style="margin: 0 1em;">X</a>
+           hx-on="htmx:afterRequest: this.closest('.contain-accessory').remove()">❌</a>
     </div>
 {% endif %}
 
